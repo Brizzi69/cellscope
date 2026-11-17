@@ -1,7 +1,12 @@
 html, body { margin: 0; height: 100%; overflow: hidden; background: #101114; }
 canvas { display: block; }
 #hud { position: fixed; left: 12px; top: 12px; color: #ddd; font: 13px/1.4 system-ui, sans-serif; }
-#controls { position: fixed; left: 12px; bottom: 16px; color: #ccc; font: 12px system-ui, sans-serif; display: flex; gap: 12px; }
+#controls { position: fixed; left: 12px; bottom: 16px; color: #ccc; font: 12px system-ui, sans-serif; display: flex; gap: 12px; align-items: center; }
+#controls select, #controls button {
+  background: rgba(28,22,26,0.85); color: #ccc; border: 1px solid #555;
+  border-radius: 4px; padding: 3px 6px; font: 12px system-ui, sans-serif; cursor: pointer;
+}
+#controls button:hover { background: rgba(60,55,58,0.9); }
 #tooltip { position: fixed; pointer-events: none; display: none; padding: 6px 8px;
            background: rgba(28,22,26,0.92); color: #eee; border: 1px solid #555;
            border-radius: 4px; font: 12px/1.4 system-ui, sans-serif; }
