@@ -8,17 +8,42 @@
   </head>
   <body>
     <div id="app"></div>
-    <div id="hud"></div>
-    <div id="tooltip"></div>
+    <div id="hud" role="status" aria-live="polite"></div>
+    <div id="tooltip" role="tooltip"></div>
+
+    <!-- R2: gene expression legend (hidden until gene selected) -->
+    <div id="gene-legend" style="display:none" aria-label="Gene expression scale">
+      <strong id="gene-name"></strong>
+      <canvas id="gene-cbar" width="120" height="10" aria-hidden="true"></canvas>
+      <span id="gene-scale"></span>
+    </div>
+
+    <!-- R3: cluster legend panel -->
+    <div id="legend" aria-label="Cluster legend" role="list"></div>
+
+    <!-- R5: 2D bar chart -->
+    <div id="chart" aria-label="Cells per cluster bar chart">
+      <svg id="chart-svg" aria-hidden="true"></svg>
+    </div>
+
+    <!-- Controls bar -->
     <div id="controls">
-      <label>size <input id="sizeSlider" type="range" min="0.005" max="0.08" step="0.001" value="0.03"></label>
-      <select id="embSelect">
+      <label>size <input id="sizeSlider" type="range" min="0.005" max="0.08" step="0.001" value="0.03" aria-label="Point size"></label>
+      <select id="embSelect" aria-label="Embedding">
         <option value="pca">PCA (real ~2.6k)</option>
         <option value="synth_100k">Synthetic 100k</option>
         <option value="synth_500k">Synthetic 500k</option>
       </select>
-      <button id="variantBtn">show spheres</button>
+      <button id="variantBtn" aria-label="Toggle sphere/point view">show spheres</button>
+      <!-- R2: gene selector -->
+      <input id="gene-input" type="text" placeholder="gene…" list="gene-list" aria-label="Search gene expression" autocomplete="off">
+      <datalist id="gene-list"></datalist>
+      <!-- R4: uncertainty slider -->
+      <label>uncertainty <input id="uncSlider" type="range" min="0" max="1" step="0.05" value="0" aria-label="Uncertainty encoding strength"></label>
+      <!-- R6 accessibility: CVD toggle -->
+      <label title="Simulate deuteranopia (green-blindness)"><input id="cvdToggle" type="checkbox" aria-label="Colour vision deficiency simulation"> CVD</label>
     </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
